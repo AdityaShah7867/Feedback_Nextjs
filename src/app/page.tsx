@@ -21,7 +21,7 @@ const Page: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    fetch('http://localhost:3400/api/v1/feedback/submit', {
+    fetch('https://webx-mini-project-1.onrender.com/api/v1/feedback/submit', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

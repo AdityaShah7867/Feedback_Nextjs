@@ -12,34 +12,29 @@ interface Feedback {
   __v: number;
 }
 
-interface Props {
-  feedbackData: Feedback[];
-}
+const Page: React.FC = () => {
+  const [feedbackData, setFeedbackData] = useState<Feedback[]>([]);
 
-const page: React.FC<Props> = () => {
-    const [feedbackData, setFeedbackData] = useState<Feedback[]>([]);
-  
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const response = await fetch('http://localhost:3400/api/v1/feedback/get');
-          if (!response.ok) {
-            throw new Error('Failed to fetch data');
-          }
-          const data = await response.json();
-          setFeedbackData(data);
-        } catch (error) {
-          console.error('Error fetching data:', error);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://webx-mini-project-1.onrender.com/api/v1/feedback/get');
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
         }
-      };
-  
-      fetchData();
-    }, []);
-  
-  return (
+        const data = await response.json();
+        setFeedbackData(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
 
+    fetchData();
+  }, []);
+
+  return (
     <div className="bg-white -mt-2 min-h-scrren text-black shadow-md rounded my-6 overflow-x-auto">
-        <br/>
+      <br />
       <table className="min-w-max w-full table- p-2">
         <thead>
           <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
@@ -68,4 +63,4 @@ const page: React.FC<Props> = () => {
   );
 };
 
-export default page;
+export default Page;
