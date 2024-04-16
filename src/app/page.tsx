@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 
-const Page = () => {
+const Page: React.FC = () => {
   const [formData, setFormData] = useState({
     email: '',
     question1: '',
@@ -11,7 +11,7 @@ const Page = () => {
     additionalFeedback: '',
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prevState => ({
       ...prevState,
@@ -19,7 +19,7 @@ const Page = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     fetch('http://localhost:3400/api/v1/feedback/submit', {
       method: 'POST',
@@ -62,7 +62,7 @@ const Page = () => {
           </div>
           <form className="md:col-span-8 p-10" onSubmit={handleSubmit}>
 
-          <div className="flex flex-wrap -mx-3">
+            <div className="flex flex-wrap -mx-3">
               <div className="w-full px-3 mb-6">
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-email">
                   Email Address
@@ -70,8 +70,6 @@ const Page = () => {
                 <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-email" type="email" name="email" value={formData.email} onChange={handleChange} placeholder="********@*****.**" />
               </div>
             </div>
-
-
             <div className="flex flex-wrap -mx-3">
               {/* Add select dropdown for question 1 */}
               <div className="w-full px-3 mb-6">
@@ -88,7 +86,7 @@ const Page = () => {
               {/* Add select dropdown for question 2 */}
               <div className="w-full px-3 mb-6">
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="feedback-question-2">
-                Rate Education Quality
+                  Rate Education Quality
                 </label>
                 <select className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="feedback-question-2" name="question2" value={formData.question2} onChange={handleChange}>
                   <option value="">Select an option</option>
@@ -100,7 +98,7 @@ const Page = () => {
               {/* Add select dropdown for question 3 */}
               <div className="w-full px-3 mb-6">
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="feedback-question-3">
-                Rate College Placement
+                  Rate College Placement
                 </label>
                 <select className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="feedback-question-3" name="question3" value={formData.question3} onChange={handleChange}>
                   <option value="">Select an option</option>
@@ -112,7 +110,7 @@ const Page = () => {
               {/* Add select dropdown for question 4 */}
               <div className="w-full px-3 mb-6">
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="feedback-question-4">
-                Rate College Canteen
+                  Rate College Canteen
                 </label>
                 <select className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="feedback-question-4" name="question4" value={formData.question4} onChange={handleChange}>
                   <option value="">Select an option</option>
