@@ -30,19 +30,18 @@ const Page: React.FC = () => {
       body: JSON.stringify(formData),
     })
     .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log(data);
-      // Handle success or show a success message to the user
-    })
+    if (response.status === 201) {
+      // Show alert if response status is 201
+      alert('Feedback submitted successfully!');
+    } else {
+      throw new Error('Network response was not ok');
+    }
+  })
     .catch(error => {
-      console.error('Error submitting feedback:', error);
-      // Handle error or show an error message to the user
-    });
+    console.error('Error submitting feedback:', error);
+    // Handle error or show an error message to the user
+    alert('An error occurred while submitting feedback. Please try again later.');
+  });
   };
 
   return (
